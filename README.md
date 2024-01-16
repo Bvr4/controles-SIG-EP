@@ -7,11 +7,14 @@ Pour cet exemple il s'agit de données de réseaux d'éclairage public (cables, 
 [x] Le nom des éléments répond à un formalisme de type nn-nnn (exemple: 01-023)  
 [x] Un foyer est supperposé à un support  
 [x] Un support supporte un foyer de même numéro  
-[] Un support est connecté à l'extrémité d'un câble du même nom (s'il existe)  
+[x] Un support est connecté à l'extrémité d'un câble du même nom (s'il existe)  
 [x] Plusieurs supports ne doivent pas avoir la même géométrie  
 [x] Plusieurs cables ne doivent pas avoir la même géométrie  
 [x] Plusieurs supports / foyers / cables ne peuvent pas avoir le même nom  
-[] Les câbles ne présentent pas d'auto-intersections
+[x] Les câbles ne présentent pas d'auto-intersections, ni d'autre géométrie invalide  
+[] La couche emprise comprends un seul enregistrement  
+[] Tous les éléments supports, foyers et câbles sont à l'intérieur de l'emprise  
+[] Les champs de la couche emprise sont renseignés, le champ INSEE est numérique compris entre 10000 et 99999
 
 
 Les vérifications effectuées ici sont données à titre d'exemple, des règles plus complèxes peuvent être envisagéees.  

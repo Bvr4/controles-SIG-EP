@@ -80,3 +80,20 @@ verif_doublon_nom(foyers, "foyers", "NOMFOY")
 
 # On vérifie que deux câbles n'ont pas la même nom
 verif_doublon_nom(cables, "câbles", "NOMCAB")
+
+# On vérifie que la couche câble ne présente pas de géométrie invalide
+for i in cables.index:
+    if not cables['geometry'][i].is_valid:
+        print(f"le câble {cables['NOMCAB'][i]} présente une géométrie invalide")
+
+
+# On vérifie que les supports sont attachés aux câbles de même nom (si il existe)
+for i in supports.index:
+    for j in cables.index:
+        if supports['NOMSUP'][i] == cables['NOMCAB'][j]:
+            cable_start_coords = cables['geometry'][j].coords[0]
+            cable_end_coords = cables['geometry'][j].coords[-1]
+
+            # On teste si le support est à l'une des deux extrémités
+            if not supports['geometry'][i].equals(Point(cable_start_coords)) and not supports['geometry'][i].equals(Point(cable_end_coords)):
+                print(f"Le câble {cables['NOMCAB'][j]} n'est pas connecté au support de même nom")
