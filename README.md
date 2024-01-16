@@ -5,8 +5,8 @@ Pour cet exemple il s'agit de données de réseaux d'éclairage public (cables, 
 
 ## Vérifications effectuées
 [x] Le nom des éléments répond à un formalisme de type nn-nnn (exemple: 01-023)  
-[] Un foyer est supperposé à un support  
-[] Un support supporte un foyer de même numéro  
+[x] Un foyer est supperposé à un support  
+[x] Un support supporte un foyer de même numéro  
 [] Un support est connecté à l'extrémité d'un câble du même nom (s'il existe)  
 [] Les câbles ne présentent pas d'auto-intersections
 

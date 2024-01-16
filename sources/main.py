@@ -42,3 +42,15 @@ for i in supports.index:
     if correspondance == False:
         print('le support ' + supports['NOMSUP'][i] + ' ne possède pas de foyer correspondant à sa numérotation')
 
+# On vérifie que les foyers sont superposés à un support
+for i in foyers.index:
+    correspondance = False
+    for j in supports.index:
+        print("support = " + supports['NOMSUP'][i] + " , foyers = " + foyers['NOMFOY'][j])
+
+        if foyers['geometry'][i] == supports['geometry'][j]:
+            correspondance = True
+
+    if correspondance == False:
+        print('le foyer ' + foyers['NOMFOY'][i] + "n'est pas superposé à un foyer")
+
