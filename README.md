@@ -8,6 +8,9 @@ Pour cet exemple il s'agit de données de réseaux d'éclairage public (cables, 
 [x] Un foyer est supperposé à un support  
 [x] Un support supporte un foyer de même numéro  
 [] Un support est connecté à l'extrémité d'un câble du même nom (s'il existe)  
+[x] Plusieurs supports ne doivent pas avoir la même géométrie  
+[x] Plusieurs cables ne doivent pas avoir la même géométrie  
+[x] Plusieurs supports / foyers / cables ne peuvent pas avoir le même nom  
 [] Les câbles ne présentent pas d'auto-intersections
 
 
