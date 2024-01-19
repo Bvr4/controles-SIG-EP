@@ -14,7 +14,8 @@ Pour cet exemple il s'agit de données de réseaux d'éclairage public (cables, 
 [x] Les câbles ne présentent pas d'auto-intersections, ni d'autre géométrie invalide  
 [x] La couche emprise comprends un seul enregistrement  
 [x] Tous les éléments supports, foyers et câbles sont à l'intérieur de l'emprise  
-[x] Les champs de la couche emprise sont renseignés, le champ INSEE est numérique compris entre 1000 et 99999
+[x] Les champs de la couche emprise sont renseignés, le champ INSEE est numérique compris entre 1000 et 99999  
+[x] Vérifier que l'INSEE renseignée correspond à la commune sur laquelle se situe l'emprise
 
 
 Les vérifications effectuées ici sont données à titre d'exemple, des règles plus complèxes peuvent être envisagéees.  

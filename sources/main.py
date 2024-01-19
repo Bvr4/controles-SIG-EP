@@ -2,6 +2,7 @@ import geopandas as gpd
 from shapely.geometry import Point, LineString
 import re
 import os
+import requests
 
 
 def valider_nom_regex(data_set, data_set_name, regex):
@@ -25,10 +26,32 @@ def verif_doublon_nom(data_set, data_set_name, data_set_name_field):
             if i > j and data_set[data_set_name_field][i] == data_set[data_set_name_field][j]:
                 print(f'les {data_set_name} {data_set[data_set_name_field][i]} et {data_set[data_set_name_field][j]} ont le même nom')
 
+
 def sont_inclus_dans_emprise(geom_emprise, data_set, data_set_name, data_set_name_field):
     for i in data_set.index:
         if not data_set['geometry'][i].within(geom_emprise):
             print(f"Le {data_set_name} {data_set[data_set_name_field][i]} n'est pas situé à l'intérieur de l'emprise")
+
+
+# Fonction permettant de vérifier qu'une géométrie est inclue dans une commune
+def est_inclu_dans_la_commune(geom_emprise, insee):
+    # On récupère la géométrie de la commune depuis l'IGN
+    url = f'https://apicarto.ign.fr/api/cadastre/commune?code_insee={insee}'
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        # Chargement des données GeoJSON dans un GeoDataFrame avec Geopandas
+        data_geojson = response.json()
+        gdf_commune = gpd.GeoDataFrame.from_features(data_geojson['features'])
+        # On convertie la géométrie de la commune en Lambert 93
+        gdf_commune.crs = "EPSG:4326"
+        gdf_commune = gdf_commune.to_crs(epsg=2154)
+
+        # Test si les géométries s'intersectent
+        if not gdf_commune['geometry'][0].intersects(geom_emprise):
+            print(f"L'emprise n'est pas contenue au sein de la commune d'INSEE {insee}")
+
+
 
 path = os.path.realpath(__file__) 
 dir = os.path.dirname(path) 
@@ -120,3 +143,5 @@ else:
     sont_inclus_dans_emprise(emprise['geometry'][0], supports, "support", "NOMSUP")
     sont_inclus_dans_emprise(emprise['geometry'][0], foyers, "foyer", "NOMFOY")
     sont_inclus_dans_emprise(emprise['geometry'][0], cables, "câble", "NOMCAB")
+
+    est_inclu_dans_la_commune(emprise['geometry'][0], emprise['INSEE'][0])
