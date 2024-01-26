@@ -71,27 +71,24 @@ valider_nom_regex(cables['NOMCAB'], 'support', regex)
 
 # On vérifie que les supports sont sous le foyer du même nom
 for i in supports.index:
-    correspondance = False
     for j in foyers.index:
         if supports['NOMSUP'][i] == foyers['NOMFOY'][j]:
-            correspondance = True
-
             if supports['geometry'][i] != foyers['geometry'][j]:
                 print(f"Le support et le foyer de même nom {supports['NOMSUP'][i]} ne se superposent pas")
-
-    if correspondance == False:
+            break
+    # Si les conditions pour amener au break n'ont pas été remplies
+    else:
         print(f"le support {supports['NOMSUP'][i]} ne possède pas de foyer correspondant à sa numérotation")
 
 
 # On vérifie que les foyers sont superposés à un support
 for i in foyers.index:
-    correspondance = False
     for j in supports.index:
         if foyers['geometry'][i] == supports['geometry'][j]:
-            correspondance = True
-
-    if correspondance == False:
-        print(f"le foyer {foyers['NOMFOY'][i]} n'est pas superposé à un foyer")
+            break
+    # Si les conditions pour amener au break n'ont pas été remplies
+    else:
+        print(f"le foyer {foyers['NOMFOY'][i]} n'est pas superposé à un support")
 
 
 # On vérifie que deux supports n'ont pas la même géométrie
